@@ -10,8 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { WorkoutPage } from '../pages/workout/workout';
 import { WeightPage } from '../pages/weight/weight';
-import { SettingsPage } from "../pages/settings/settings";
-import { LogweightPage } from "../pages/logweight/logweight";
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,9 +24,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     LoginPage,
     WorkoutPage,
-    WeightPage,
-    SettingsPage,
-    LogweightPage
+    WeightPage
   ],
   imports: [
     BrowserModule,
@@ -42,9 +39,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     LoginPage,
     WorkoutPage,
-    WeightPage,
-    SettingsPage,
-    LogweightPage
+    WeightPage
   ],
   providers: [
     StatusBar,
