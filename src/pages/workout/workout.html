@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>workout</ion-title>
+    <ion-title>Workout</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,61 +19,83 @@
       <ion-col>
         <ion-item>
             <button ion-button large full>
-                Sets
-              </button>
+                + Sets
+            </button>
+            <button ion-button small full icon-start>
+                <ion-icon name='arrow-down'></ion-icon>
+            </button>
         </ion-item>
       </ion-col>
       <ion-col>
         <ion-item>
             <button ion-button large full>
-                Reps
+                + Reps
+            </button>
+            <button ion-button small full icon-start>
+                <ion-icon name='arrow-down'></ion-icon>
             </button>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
         <ion-col col-8>
-            <ion-card>
-              <ion-card-header>
+            <h1 id="WeightDisplay">
                 Weight
-              </ion-card-header>
-            </ion-card>
-          </ion-col>
-          <ion-col>
+            </h1>
+            <div id="weightButtons">
+                <button ion-button small icon-start>
+                    <ion-icon name='arrow-down'></ion-icon>
+                </button>
+                <button ion-button small icon-start>
+                        <ion-icon name='arrow-up'></ion-icon>
+                </button>
+            </div>
+        </ion-col>
+        <ion-col>
             <ion-row>
                 <button ion-button small full>
-                    Goodbyew
+                    + 2.5kg
                 </button>
             </ion-row>
             <ion-row>
                 <button ion-button small full>
-                    Goodbyew
+                    + 5kg
                 </button>
             </ion-row>
             <ion-row>
                 <button ion-button small full>
-                    Goodbyew
+                    + 10kg
                 </button>
             </ion-row>
             <ion-row>
                 <button ion-button small full>
-                    Goodbyew
+                    + 20kg
                 </button>
             </ion-row>
             <ion-row>
                 <button ion-button small full>
-                    Goodbyew
+                    + 40kg
                 </button>
             </ion-row>
-          </ion-col>
+        </ion-col>
     </ion-row>
       
     <ion-row>
-        <ion-card>
-            <ion-card-header>
-              Exercise
-            </ion-card-header>
-          </ion-card>
+        <ion-item>
+            <ion-label>Exercise</ion-label>
+            <ion-select [(ngModel)]="exercise" interface="popover">
+                <ion-option value="bench">Bench</ion-option>
+                <ion-option value="dl">Deadlift</ion-option>
+                <ion-option value="ohp">Press</ion-option>
+                <ion-option value="wpu">Pull Up</ion-option>
+                <ion-option value="bsq">Back Squat</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-row>
+    <ion-row>
+        <button ion-button large full>
+            Save
+        </button>
     </ion-row>
   </ion-grid>
 
