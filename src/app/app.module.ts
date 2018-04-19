@@ -11,7 +11,6 @@ import { LoginPage } from '../pages/login/login';
 import { WorkoutPage } from '../pages/workout/workout';
 import { WeightPage } from '../pages/weight/weight';
 
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
