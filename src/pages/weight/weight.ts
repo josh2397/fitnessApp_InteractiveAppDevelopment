@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the WeightPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {TabsPage} from "../tabs/tabs";
+import { LogweightPage } from "../logweight/logweight";
 
 @IonicPage()
 @Component({
@@ -22,4 +17,7 @@ export class WeightPage {
     console.log('ionViewDidLoad WeightPage');
   }
 
+  logweight() {
+    this.navCtrl.push(LogweightPage,)
+  }
 }

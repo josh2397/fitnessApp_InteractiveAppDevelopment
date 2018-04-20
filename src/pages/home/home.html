@@ -4,14 +4,31 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content no-padding>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-item>
+        <ion-label>Display</ion-label>
+        <ion-select [(ngModel)]="display" interface="popover">
+          <ion-option value="1rm">1 Rep Max</ion-option>
+          <ion-option value="5x5">5 x 5</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+    <ion-card>
+      <img src="../../assets/imgs/graph.jpg">
+    </ion-card>
+  <ion-item>
+    <ion-label>Time Scale</ion-label>
+    <ion-range min="0" max="100" [(ngModel)]="timeScale" color="secondary">
+      <ion-label range-left>-</ion-label>
+      <ion-label range-right>+</ion-label>
+    </ion-range>
+  </ion-item>
+  <ion-item>
+    <button ion-button large full color="danger" (click)="openModal()">
+        Add Exercise
+    </button>
+  </ion-item>
+  </ion-grid>
 </ion-content>
