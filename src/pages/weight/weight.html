@@ -9,8 +9,23 @@
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-card>
+      <img src="../../assets/imgs/graph.jpg">
+    </ion-card>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Time Scale</ion-label>
+    <ion-range min="0" max="100" [(ngModel)]="timeScale" color="secondary">
+      <ion-label range-left>-</ion-label>
+      <ion-label range-right>+</ion-label>
+    </ion-range>
+  </ion-item>
+  
+
   <ion-item (click)="logweight()">
-    <button ion-button round default color="danger">
+    <button ion-button full default color="danger">
       Log your weight
     </button>
   </ion-item>
