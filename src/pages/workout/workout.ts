@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from "@ionic/storage"
 import { Entry } from '../../common/Entry';
+
 
 /**
  * Generated class for the WorkoutPage page.
@@ -17,7 +19,7 @@ import { Entry } from '../../common/Entry';
 export class WorkoutPage {
   sets:number;
   reps:number;
-  weight:number = 0; 
+  weight:number = 0;
   exercise:any;
   wDir:any=true;
   dirStr:string='+';
@@ -31,7 +33,7 @@ export class WorkoutPage {
   incSets(){
     this.sets ++;
   }
-  
+
   decSets(){
     if (this.sets == 1){
       return;
@@ -42,7 +44,7 @@ export class WorkoutPage {
   incReps(){
     this.reps ++;
   }
-  
+
   decReps(){
     if (this.reps == 1){
       return;

@@ -11,7 +11,7 @@
 <ion-content padding>
   <ion-item>
     <ion-card>
-      <img src="../../assets/imgs/graph.jpg">
+      <canvas #weightChart ></canvas>
     </ion-card>
   </ion-item>
 
@@ -22,7 +22,7 @@
       <ion-label range-right>+</ion-label>
     </ion-range>
   </ion-item>
-  
+
 
   <ion-item (click)="logweight()">
     <button ion-button full default color="danger">
