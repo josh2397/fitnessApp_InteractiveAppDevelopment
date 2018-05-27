@@ -5,7 +5,6 @@ import { User } from '../../common/User';
 import { WorkoutPage } from '../workout/workout';
 import { Storage } from '@ionic/storage';
 
-
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -14,7 +13,7 @@ import { Storage } from '@ionic/storage';
 export class LoginPage {
   username:any;
   password:any;
-  public static user: User;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
   }
 
@@ -23,10 +22,11 @@ export class LoginPage {
   }
 
   login() {
-    this.user = new User(this.username, this.password);
+    let user = new User(this.username, this.password);
+    this.storage.set("user",JSON.parse(JSON.stringify(user)));
+
     this.navCtrl.push(TabsPage, {
     });
   }
 }
-
 

@@ -14,7 +14,7 @@ export class User {
     console.log(this.username, this.password);
   }
 
-  getNewEntry(entry:Object){
-    //this.data.addEntry(entry);
+  getNewEntry(entry:Entry){
+    this.data.addEntry(entry);
   }
 }

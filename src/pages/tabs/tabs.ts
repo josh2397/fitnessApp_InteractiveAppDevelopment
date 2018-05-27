@@ -14,9 +14,6 @@ export class TabsPage {
   tab3Root = WeightPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    let user = navParams.get('user');
-    this.navCtrl.push(WorkoutPage, {
-      user: user,
-    });
+
   }
 }
