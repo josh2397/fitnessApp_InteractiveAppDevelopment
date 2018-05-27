@@ -4,6 +4,7 @@ import { Storage } from "@ionic/storage"
 import { Entry } from '../../common/Entry';
 import { LoginPage } from '../login/login';
 import { User } from '../../common/User';
+import { TabsPage } from '../tabs/tabs';
 /**
  * Generated class for the WorkoutPage page.
  *
@@ -23,11 +24,14 @@ export class WorkoutPage {
   exercise:any;
   wDir:any=true;
   dirStr:string='+';
-  user:User;
+  currentUser:any;
+  //STORE THESE IN THE USER OBJECT AND MAKE THIS LIST IN CONSTRUCTOR
+  exercises =["bench","press","deadlift","bdbh","sdkov","msdkv"];
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     this.sets = 1;
     this.reps = 1;
     this.weight = 0;
+    this.currentUser = navParams.data;
   }
 
   incSets(){
@@ -80,7 +84,9 @@ export class WorkoutPage {
   }
 
   clearWeight(){
-    this.weight = 0;
+    this.weight = 1;
+    this.sets = 1;
+    this.reps = 0;
     this.wDir = true;
     this.dirStr = '+'
   }
@@ -89,19 +95,8 @@ export class WorkoutPage {
     if (this.exercise == undefined){
       return;
     }
-    let cUser:any;
-    this.storage.get("user").then((val) => {
-      cUser = JSON.parse(val);
-    })
-    console.log(cUser);
-    try{
-      cUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight));
-    }catch{
-      console.log('didnt WORK');
-    }
-    
-
-  }
+    this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight));
+  } 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WorkoutPage');

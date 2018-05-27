@@ -1,5 +1,5 @@
 <ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Workout" tabIcon="tennisball"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Weight" tabIcon="ios-color-filter"></ion-tab>
+  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home" [rootParams]="currentUser"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Workout" tabIcon="tennisball" [rootParams]="currentUser"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Weight" tabIcon="ios-color-filter" [rootParams]="currentUser"></ion-tab>
 </ion-tabs>
