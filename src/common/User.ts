@@ -1,17 +1,20 @@
 import { Entry } from '../common/Entry';
 import { LoginPage } from "../pages/login/login";
+import { Data } from "../common/Data";
 
 export class User {
-
   username:string;
   password:string;
-  data:object;
+  data:Data;
 
-  constructor(username:string, password:string, ){
+  constructor(username:string, password:string){
     this.username = username;
     this.password = password;
+    this.data = new Data();
     console.log(this.username, this.password);
-
   }
 
+  getNewEntry(entry:Object){
+    //this.data.addEntry(entry);
+  }
 }

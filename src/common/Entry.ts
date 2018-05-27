@@ -9,6 +9,5 @@ export class Entry {
         this.sets = sets;
         this.reps = reps;
         this.weight = weight;
-        console.log(this.exercise, this.sets, this.reps, this.weight);
     }
 }

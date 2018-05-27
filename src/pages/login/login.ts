@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-
+import { User } from '../../common/User';
+import { WorkoutPage } from '../workout/workout';
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage()
@@ -11,7 +13,9 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class LoginPage {
   username:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  password:any;
+  public static user: User;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -19,10 +23,10 @@ export class LoginPage {
   }
 
   login() {
-    this.navCtrl.setRoot(TabsPage, {
-      username: this.username
+    this.user = new User(this.username, this.password);
+    this.navCtrl.push(TabsPage, {
     });
   }
-
-
 }
+
+

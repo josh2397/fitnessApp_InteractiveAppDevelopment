@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from "@ionic/storage"
 import { Entry } from '../../common/Entry';
-
-
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the WorkoutPage page.
  *
@@ -23,11 +22,12 @@ export class WorkoutPage {
   exercise:any;
   wDir:any=true;
   dirStr:string='+';
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     this.sets = 1;
     this.reps = 1;
     this.weight = 0;
+    this.user = navParams.get('user');
   }
 
   incSets(){
@@ -89,7 +89,8 @@ export class WorkoutPage {
     if (this.exercise == undefined){
       return;
     }
-    let entry = new Entry(this.exercise, this.sets, this.reps, this.weight);
+    this = that;
+    LoginPage.user.getNewEntry(Entry);
   }
 
   ionViewDidLoad() {
