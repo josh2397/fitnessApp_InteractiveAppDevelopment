@@ -22,5 +22,13 @@ export class Data {
         }
         return retList;
     }
-  
+
+    getData(exercise:string){
+      let dateList = [];
+      for (var i = 0; i < this.data[exercise].length; i++){
+        dateList.push(this.data[exercise][i][3]);
+      }
+      return dateList;
+    }
+
   }

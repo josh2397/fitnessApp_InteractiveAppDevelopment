@@ -96,9 +96,22 @@ export class WorkoutPage {
     if (this.exercise == undefined){
       return;
     }
-    let today = new Date().toDateString();
-    this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight,today));
-  } 
+    let today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+
+    var ftoday = mm + '/' + dd + '/' + yyyy;
+    console.log(ftoday);
+    for (var i = 0; i < 10; i++){
+      this.weight = Math.random() * (100-10) + 10;
+      dd += 1;
+      ftoday = mm + '/' + dd + '/' + yyyy;
+      console.log(ftoday);
+      this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight, ftoday));
+    }
+    this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight, ftoday));
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WorkoutPage');

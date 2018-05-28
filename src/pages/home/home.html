@@ -8,19 +8,18 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-item>
-        <ion-label>Display</ion-label>
-        <ion-select [(ngModel)]="display" interface="popover">
-          <ion-option value="1rm">1 Rep Max</ion-option>
-          <ion-option value="5x5">5 x 5</ion-option>
+        <ion-label>Exercise</ion-label>
+        <ion-select [(ngModel)]="exercise" (ionChange)="notify($event)" interface="popover">
+          <ion-option *ngFor="let ex of exercises">{{ex}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-row>
-    <ion-card>
-      <img src="../../assets/imgs/graph.jpg">
-    </ion-card>
+    <ion-item>
+      <canvas #totalWeight></canvas>
+    </ion-item>
   <ion-item>
     <ion-label>Time Scale</ion-label>
-    <ion-range min="0" max="100" [(ngModel)]="timeScale" color="secondary">
+    <ion-range min="0" max="100" [(ngModel)]="timeScale" color="secondary" (ionChange)="notify($event)">
       <ion-label range-left>-</ion-label>
       <ion-label range-right>+</ion-label>
     </ion-range>
