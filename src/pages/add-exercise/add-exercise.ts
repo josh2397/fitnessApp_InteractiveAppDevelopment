@@ -16,10 +16,11 @@ import { User } from '../../common/User';
 })
 export class AddExercisePage {
   currentUser:any;
+  exercise:string;
+  cat:string;
+  goal:string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private view: ViewController) {
     this.currentUser = navParams.get('currentUser');
-    
-    
   }
 
   ionViewDidLoad() {
@@ -27,6 +28,9 @@ export class AddExercisePage {
   }
 
   closeModal(){
+    if (!(this.exercise == "")){
+      this.currentUser.getNewExercise(this.exercise);
+    }
     this.view.dismiss();
   }
 

@@ -14,8 +14,9 @@ export class WeightPage {
   @ViewChild('weightChart') canvas;
   chart:any;
 
-
+  currentUser:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.currentUser = navParams.data;
   }
 
   ionViewDidLoad() {
@@ -27,7 +28,26 @@ export class WeightPage {
         labels: ["", '', '', '', ''],
         datasets: [{
           label:"weight",
-          data: [10, 40, 45, 50, 70, 80],
+          data: this.currentUser.data.getExercise("Bench"),
+          backgroundColor:"red",
+          fill:false,
+        }]
+
+      }
+    });
+    this.chart.update();
+  }
+
+  ionViewDidEnter() {
+    console.log('ionViewDidLoad WeightPage');
+
+    this.chart = new Chart(this.canvas.nativeElement, {
+      type:'line',
+      data: {
+        labels: ["", '', '', '', ''],
+        datasets: [{
+          label:"weight",
+          data: this.currentUser.data.getExercise("Bench"),
           backgroundColor:"red",
           fill:false,
         }]

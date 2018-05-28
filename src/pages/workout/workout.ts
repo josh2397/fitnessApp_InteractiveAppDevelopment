@@ -87,7 +87,7 @@ export class WorkoutPage {
   clearWeight(){
     this.weight = 1;
     this.sets = 1;
-    this.reps = 0;
+    this.reps = 1;
     this.wDir = true;
     this.dirStr = '+'
   }
@@ -96,7 +96,8 @@ export class WorkoutPage {
     if (this.exercise == undefined){
       return;
     }
-    this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight));
+    let today = new Date().toDateString();
+    this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight,today));
   } 
 
   ionViewDidLoad() {
