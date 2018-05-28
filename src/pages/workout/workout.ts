@@ -26,12 +26,13 @@ export class WorkoutPage {
   dirStr:string='+';
   currentUser:any;
   //STORE THESE IN THE USER OBJECT AND MAKE THIS LIST IN CONSTRUCTOR
-  exercises =["bench","press","deadlift","bdbh","sdkov","msdkv"];
+  exercises:string[];
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     this.sets = 1;
     this.reps = 1;
     this.weight = 0;
     this.currentUser = navParams.data;
+    this.exercises = this.currentUser.exercises;
   }
 
   incSets(){
