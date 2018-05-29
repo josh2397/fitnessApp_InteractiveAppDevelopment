@@ -2,6 +2,7 @@ import { Component, ViewChild} from '@angular/core';
 import { NavController, ModalController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { User } from '../../common/User';
+import {LoginPage} from "../login/login";
 
 @Component({
   selector: 'page-home',
@@ -33,9 +34,9 @@ export class HomePage {
     this.chart = new Chart(this.canvas.nativeElement, {
       type:'line',
       data: {
-        labels: this.currentUser.data.getData(this.exercise).slice(0, Math.floor(this.currentUser.data.getData(this.exercise).length * this.timeScale/100)),
+        labels: this.currentUser.data.getDate(this.exercise).slice(0, Math.floor(this.currentUser.data.getDate(this.exercise).length * this.timeScale/100)),
         datasets: [{
-          label:"weight",
+          label:"Total Weight",
           data: this.currentUser.data.getExercise(this.exercise).slice(0, Math.floor(this.currentUser.data.getExercise(this.exercise).length * this.timeScale/100)),
           backgroundColor:"red",
           fill:false,
@@ -56,9 +57,9 @@ export class HomePage {
     this.chart = new Chart(this.canvas.nativeElement, {
       type:'line',
       data: {
-        labels: this.currentUser.data.getData(this.exercise).slice(0, Math.floor(this.currentUser.data.getData(this.exercise).length * this.timeScale/100)),
+        labels: this.currentUser.data.getDate(this.exercise).slice(0, Math.floor(this.currentUser.data.getDate(this.exercise).length * this.timeScale/100)),
         datasets: [{
-          label:"weight",
+          label:"Total Weight",
           data: this.currentUser.data.getExercise(this.exercise).slice(0, Math.floor(this.currentUser.data.getExercise(this.exercise).length * this.timeScale/100)),
           backgroundColor:"red",
           fill:false,
@@ -75,9 +76,9 @@ export class HomePage {
     this.chart = new Chart(this.canvas.nativeElement, {
       type:'line',
       data: {
-        labels: this.currentUser.data.getData(this.exercise).slice(0, Math.floor(this.currentUser.data.getData(this.exercise).length * this.timeScale/100)),
+        labels: this.currentUser.data.getDate(this.exercise).slice(0, Math.floor(this.currentUser.data.getDate(this.exercise).length * this.timeScale/100)),
         datasets: [{
-          label:"weight",
+          label:"Total Weight",
           data: this.currentUser.data.getExercise(this.exercise).slice(0, Math.floor(this.currentUser.data.getExercise(this.exercise).length * this.timeScale/100)),
           backgroundColor:"red",
           fill:false,
@@ -86,6 +87,10 @@ export class HomePage {
       }
     });
     this.chart.update();
+  }
+
+  logout(){
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

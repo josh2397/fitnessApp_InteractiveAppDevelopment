@@ -13,11 +13,35 @@ export class WeightPage {
 
   @ViewChild('weightChart') canvas;
   chart:any;
+  timeScale:number = 100;
 
   currentUser:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.currentUser = navParams.data;
   }
+
+  notify() {
+    this.chart = new Chart(this.canvas.nativeElement, {
+      type:'line',
+      data: {
+        labels: this.currentUser.getWeightDate().slice(0, Math.floor(this.currentUser.getWeightDate().length * this.timeScale/100)),
+        datasets: [{
+          label:"weight",
+          data: this.currentUser.getWeight().slice(0, Math.floor(this.currentUser.getWeight().length * this.timeScale/100)),
+          backgroundColor:"red",
+          fill:false,
+        }]
+
+      },
+      options: {
+        animation: {
+          duration: 10
+        }
+      }
+    });
+    this.chart.update();
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WeightPage');
@@ -25,10 +49,10 @@ export class WeightPage {
     this.chart = new Chart(this.canvas.nativeElement, {
       type:'line',
       data: {
-        labels: ["", '', '', '', ''],
+        labels: this.currentUser.getWeightDate().slice(0, Math.floor(this.currentUser.getWeightDate().length * this.timeScale/100)),
         datasets: [{
           label:"weight",
-          data: this.currentUser.data.getExercise("Bench"),
+          data: this.currentUser.getWeight().slice(0, Math.floor(this.currentUser.getWeight().length * this.timeScale/100)),
           backgroundColor:"red",
           fill:false,
         }]
@@ -44,10 +68,10 @@ export class WeightPage {
     this.chart = new Chart(this.canvas.nativeElement, {
       type:'line',
       data: {
-        labels: ["", '', '', '', ''],
+        labels: this.currentUser.getWeightDate().slice(0, Math.floor(this.currentUser.getWeightDate().length * this.timeScale/100)),
         datasets: [{
           label:"weight",
-          data: this.currentUser.data.getExercise("Bench"),
+          data: this.currentUser.getWeight().slice(0, Math.floor(this.currentUser.getWeight().length * this.timeScale/100)),
           backgroundColor:"red",
           fill:false,
         }]
@@ -58,6 +82,7 @@ export class WeightPage {
   }
 
   logweight() {
-    this.navCtrl.push(LogweightPage,)
+    let currentUser = this.navParams.data;
+    this.navCtrl.push(LogweightPage, { currentUser: currentUser })
   }
 }

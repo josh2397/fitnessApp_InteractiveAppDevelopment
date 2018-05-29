@@ -28,5 +28,9 @@ export class LoginPage {
       currentUser: currentUser
     });
   }
+
+  // storeUser(){
+  //   this.storage.set()
+  // }
 }
 

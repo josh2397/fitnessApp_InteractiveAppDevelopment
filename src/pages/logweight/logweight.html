@@ -11,7 +11,7 @@
   <ion-row>
     <ion-col col-4 >
       <ion-item>
-        <ion-input type="text" ></ion-input>
+        <ion-input type="text" [(ngModel)]="weightEntry"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col>
@@ -23,7 +23,7 @@
     <ion-col>
       <ion-item>
         <ion-label>Date</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+        <ion-datetime displayFormat="MM/DD/YY" [(ngModel)]="weightEntryDate"></ion-datetime>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -31,7 +31,9 @@
   <ion-row>
     <ion-col>
       <div padding-top>
-        <button ion-button color="danger" full default> Add Weight </button>
+        <button ion-button color="danger" full default (click)="closeView()">
+          Add Weight
+        </button>
       </div>
     </ion-col>
   </ion-row>

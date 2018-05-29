@@ -1,12 +1,12 @@
 import { Entry } from "./Entry";
 
-export class weight {
+export class Weight {
   weight = [];
 
   constructor(){
 
   }
-  addWeight(){
-
+  addWeight(weightValue){
+    this.weight.push
   }
 }

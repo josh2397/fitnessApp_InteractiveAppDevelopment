@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion_button icon-only (click)="logout()">
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,13 +24,13 @@
     </ion-item>
   <ion-item>
     <ion-label>Time Scale</ion-label>
-    <ion-range min="0" max="100" [(ngModel)]="timeScale" color="secondary" (ionChange)="notify($event)">
+    <ion-range min="1" max="100" [(ngModel)]="timeScale" color="secondary" (ionChange)="notify($event)">
       <ion-label range-left>-</ion-label>
       <ion-label range-right>+</ion-label>
     </ion-range>
   </ion-item>
   <ion-item>
-    <button ion-button large full color="danger" (click)="openModal()">
+    <button ion-button full default color="danger" (click)="openModal()">
         Add Exercise
     </button>
   </ion-item>

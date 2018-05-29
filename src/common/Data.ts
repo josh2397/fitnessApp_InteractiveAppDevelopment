@@ -1,12 +1,20 @@
 import { Entry } from "./Entry";
+import { LogweightPage } from "../pages/logweight/logweight";
 
 export class Data {
     data = {};
+    weight = [];
 
-    constructor(){
+    constructor() {
 
     }
+    addWeight(weightEntry:number){
+      this.weight.push(weightEntry)
+    }
 
+    getWeight(){
+      return this.weight;
+    }
     addEntry(entry:Entry){
         if (this.data[entry.exercise] == null){
             this.data[entry.exercise] = [];
@@ -23,7 +31,7 @@ export class Data {
         return retList;
     }
 
-    getData(exercise:string){
+    getDate(exercise:string){
       let dateList = [];
       for (var i = 0; i < this.data[exercise].length; i++){
         dateList.push(this.data[exercise][i][3]);

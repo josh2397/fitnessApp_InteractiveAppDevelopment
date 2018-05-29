@@ -5,12 +5,7 @@ import { Entry } from '../../common/Entry';
 import { LoginPage } from '../login/login';
 import { User } from '../../common/User';
 import { TabsPage } from '../tabs/tabs';
-/**
- * Generated class for the WorkoutPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -108,10 +103,12 @@ export class WorkoutPage {
       dd += 1;
       ftoday = mm + '/' + dd + '/' + yyyy;
       console.log(ftoday);
-      this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight, ftoday));
+      this.currentUser.getNewEntry(new Entry(this.exercise, this.sets, this.reps, this.weight, ftoday));
     }
     this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight, ftoday));
   }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WorkoutPage');
