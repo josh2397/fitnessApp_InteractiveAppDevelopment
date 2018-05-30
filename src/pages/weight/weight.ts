@@ -13,7 +13,7 @@ export class WeightPage {
 
   @ViewChild('weightChart') canvas;
   chart:any;
-  timeScale:number = 100;
+  timeScale:number = 1;
 
   currentUser:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -21,13 +21,22 @@ export class WeightPage {
   }
 
   notify() {
+    if(this.currentUser.data.getWeight() == undefined){
+      this.timeScale = 0;
+      this.chart = new Chart(this.canvas.nativeElement, {
+        labels: [1, 2, 3, 4],
+        series: [[]]
+      });
+      this.chart.update();
+      return;
+    }
     this.chart = new Chart(this.canvas.nativeElement, {
       type:'line',
       data: {
-        labels: this.currentUser.getWeightDate().slice(0, Math.floor(this.currentUser.getWeightDate().length * this.timeScale/100)),
+        labels: this.currentUser.getWeightDate().slice(Math.floor(this.currentUser.getWeightDate().length * this.timeScale/100),this.currentUser.getWeightDate().length),
         datasets: [{
           label:"weight",
-          data: this.currentUser.getWeight().slice(0, Math.floor(this.currentUser.getWeight().length * this.timeScale/100)),
+          data: this.currentUser.getWeight().slice(Math.floor(this.currentUser.getWeight().length * this.timeScale/100),this.currentUser.getWeight().length),
           backgroundColor:"red",
           fill:false,
         }]
@@ -44,41 +53,12 @@ export class WeightPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WeightPage');
-
-    this.chart = new Chart(this.canvas.nativeElement, {
-      type:'line',
-      data: {
-        labels: this.currentUser.getWeightDate().slice(0, Math.floor(this.currentUser.getWeightDate().length * this.timeScale/100)),
-        datasets: [{
-          label:"weight",
-          data: this.currentUser.getWeight().slice(0, Math.floor(this.currentUser.getWeight().length * this.timeScale/100)),
-          backgroundColor:"red",
-          fill:false,
-        }]
-
-      }
-    });
-    this.chart.update();
+    this.timeScale = 1;
+    this.notify();
   }
 
   ionViewDidEnter() {
-    console.log('ionViewDidLoad WeightPage');
-
-    this.chart = new Chart(this.canvas.nativeElement, {
-      type:'line',
-      data: {
-        labels: this.currentUser.getWeightDate().slice(0, Math.floor(this.currentUser.getWeightDate().length * this.timeScale/100)),
-        datasets: [{
-          label:"weight",
-          data: this.currentUser.getWeight().slice(0, Math.floor(this.currentUser.getWeight().length * this.timeScale/100)),
-          backgroundColor:"red",
-          fill:false,
-        }]
-
-      }
-    });
-    this.chart.update();
+    this.notify();
   }
 
   logweight() {
