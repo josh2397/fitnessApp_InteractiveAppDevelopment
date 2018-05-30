@@ -10,6 +10,7 @@ export class Data {
     }
 
     getDataFromList(newData:any){
+
       for (let key in newData){
         this.data[key] = [];
         for (var i = 0; i < newData[key].length; i++){
@@ -26,7 +27,11 @@ export class Data {
     getWeight(){
       return this.weight;
     }
+
     addEntry(entry:Entry){
+        /*
+        Create another entry for the data dictionary
+         */
         if (this.data[entry.exercise] == null){
             this.data[entry.exercise] = [];
         }
@@ -35,6 +40,9 @@ export class Data {
     }
 
     getExercise(exercise:string){
+      /*
+      Return the list of exercises
+      */
       try{
         let retList = [];
         for (var i = 0; i < this.data[exercise].length; i++){
@@ -46,6 +54,9 @@ export class Data {
     }
 
     getDate(exercise:string){
+      /*
+      Return the list of data labels
+      */
       let dateList = [];
       for (var i = 0; i < this.data[exercise].length; i++){
         dateList.push(this.data[exercise][i][3]);

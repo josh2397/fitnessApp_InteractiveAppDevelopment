@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from "@ionic/storage"
 import { Entry } from '../../common/Entry';
-import { LoginPage } from '../login/login';
-import { User } from '../../common/User';
-import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -13,6 +10,7 @@ import { TabsPage } from '../tabs/tabs';
   templateUrl: 'workout.html',
 })
 export class WorkoutPage {
+
   sets:number;
   reps:number;
   weight:number = 0;
@@ -20,12 +18,14 @@ export class WorkoutPage {
   wDir:any=true;
   dirStr:string='+';
   currentUser:any;
-  //STORE THESE IN THE USER OBJECT AND MAKE THIS LIST IN CONSTRUCTOR
   exercises:string[];
+
+  // Initialises workout values
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     this.sets = 1;
     this.reps = 1;
     this.weight = 0;
+    // Gets user from navparams
     this.currentUser = navParams.data;
     this.exercises = this.currentUser.exercises;
   }
@@ -52,6 +52,7 @@ export class WorkoutPage {
     this.reps --;
   }
 
+  // Checks weight doesn't go below 0
   incWeight(value){
     if (this.wDir){
       this.weight += value;
@@ -63,6 +64,7 @@ export class WorkoutPage {
     }
   }
 
+  // Changes the direction of incrementation for weight
   weightDir(value){
     if (value == this.wDir){
       if (value){
@@ -88,6 +90,7 @@ export class WorkoutPage {
   }
 
   save(){
+    // Don't save if no exercise selected
     if (this.exercise == undefined){
       return;
     }
@@ -95,14 +98,16 @@ export class WorkoutPage {
     var dd = today.getDate();
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
-
+    // formats the current date
     var ftoday = mm + '/' + dd + '/' + yyyy;
     for (var i = 0; i < 10; i++){
       this.weight = Math.random() * (100-10) + 10;
       dd += 1;
       ftoday = mm + '/' + dd + '/' + yyyy;
+      // Add the the workout entry to the data
       this.currentUser.getNewEntry(new Entry(this.exercise, this.sets, this.reps, this.weight, ftoday));
     }
+    // Store the data in ionic storage
     this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight, ftoday));
     this.storage.set(this.currentUser.username+"Data",this.currentUser.data);
     this.storage.set(this.currentUser.username+"Exercises",this.currentUser.exercises);

@@ -11,11 +11,13 @@
 <ion-content padding>
   <ion-item>
     <ion-card>
+      <!-- Display the weight chart -->
       <canvas #weightChart ></canvas>
     </ion-card>
   </ion-item>
 
   <ion-item>
+    <!-- Timescale ion range object -->
     <ion-label>Time Scale</ion-label>
     <ion-range min="1" max="80" [(ngModel)]="timeScale" color="secondary" (ionChange)="notify($event)">
       <ion-label range-left>-</ion-label>
@@ -23,18 +25,20 @@
     </ion-range>
   </ion-item>
 
-
+  <!-- Button to open the log weight page -->
   <ion-item (click)="logweight()">
     <button ion-button full default color="danger">
       Log your weight
     </button>
   </ion-item>
 
+
+  <ion-label>Display an Image</ion-label>
   <ion-item>
-    <input #fileInput type="file" accept="image/*"  (change)="displayImage(fileInput.files)" multiple>
+
+    <input #fileInput type="file" accept="image/*" (change)="displayImage(fileInput.files)" multiple>
   </ion-item>
   <ion-item>
     <img src="{{imageFile}}">
   </ion-item>
-
 </ion-content>

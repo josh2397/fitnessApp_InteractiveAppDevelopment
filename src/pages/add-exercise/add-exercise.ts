@@ -24,11 +24,13 @@ export class AddExercisePage {
 
   closeModal(){
     if (!(this.exercise == "")){
+      // Sends the new exercise to the user
       this.currentUser.getNewExercise(this.exercise);
     }
     this.view.dismiss();
   }
 
+  // renames an exercise with prompt alert
   edit(ex:string){
     let newStr;
     let prompt = this.alertCtrl.create({
@@ -48,7 +50,8 @@ export class AddExercisePage {
     });
     prompt.present();
   }
-  
+
+  // deletes exercise from the list
   delete(ex:string){
     this.currentUser.delExercise(ex);
   }

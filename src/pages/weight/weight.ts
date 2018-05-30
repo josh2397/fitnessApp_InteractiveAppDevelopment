@@ -11,7 +11,7 @@ import { Storage } from "@ionic/storage";
   templateUrl: 'weight.html',
 })
 export class WeightPage {
-
+  // Declare Variables
   @ViewChild('weightChart') canvas;
   chart:any;
   timeScale:number = 1;
@@ -19,6 +19,7 @@ export class WeightPage {
   currentUser:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+    // Get values from storage
     this.currentUser = navParams.data;
     storage.get('image').then(val => {
       this.imageFile = val;
@@ -26,7 +27,11 @@ export class WeightPage {
   }
 
   notify() {
+    /*
+    Updates the weight graph every time the page is entered, loaded, or the timescale changes
+     */
     if(this.currentUser.data.getWeight() == undefined){
+      // If no data was added, then set to empty lists
       this.timeScale = 0;
       this.chart = new Chart(this.canvas.nativeElement, {
         labels: [1, 2, 3, 4],
@@ -38,9 +43,11 @@ export class WeightPage {
     this.chart = new Chart(this.canvas.nativeElement, {
       type:'line',
       data: {
+        // Gets the list of date string from the user object to display on the chart
         labels: this.currentUser.getWeightDate().slice(Math.floor(this.currentUser.getWeightDate().length * this.timeScale/100),this.currentUser.getWeightDate().length),
         datasets: [{
           label:"weight",
+          // Gets the list of weights from the user object
           data: this.currentUser.getWeight().slice(Math.floor(this.currentUser.getWeight().length * this.timeScale/100),this.currentUser.getWeight().length),
           backgroundColor:"red",
           fill:false,
@@ -48,6 +55,7 @@ export class WeightPage {
 
       },
       options: {
+        // Stops the animation from playing
         animation: {
           duration: 10
         }
@@ -57,6 +65,9 @@ export class WeightPage {
   }
 
   displayImage(files){
+    /*
+    Displays the image selected by the user from their local storage
+     */
     let fileReader = new FileReader();
     fileReader.onload = e => {
       this.imageFile = fileReader.result;
@@ -76,6 +87,9 @@ export class WeightPage {
   }
 
   logweight() {
+    /*
+    Opens the log weight page when the user clicks the log weight button
+     */
     let currentUser = this.navParams.data;
     this.navCtrl.push(LogweightPage, { currentUser: currentUser })
   }
