@@ -15,7 +15,7 @@
       <ion-item>
         <ion-label>Exercise</ion-label>
         <ion-select [(ngModel)]="exercise" (ionChange)="notify($event)" interface="popover">
-          <ion-option *ngFor="let ex of exercises">{{ex}}</ion-option>
+          <ion-option *ngFor="let ex of currentUser.exercises">{{ex}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-row>

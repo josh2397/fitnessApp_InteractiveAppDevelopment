@@ -105,6 +105,7 @@ export class WorkoutPage {
     }
     this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight, ftoday));
     this.storage.set(this.currentUser.username+"Data",this.currentUser.data);
+    this.storage.set(this.currentUser.username+"Exercises",this.currentUser.exercises);
   }
 
 

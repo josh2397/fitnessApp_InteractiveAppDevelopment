@@ -16,13 +16,14 @@ export class LoginPage {
   password:any;
   letIn:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
-
+    
   }
 
   ionViewDidLoad() {
   }
 
   login() {
+    console.log(this.storage.keys());
     let currentUser = new User(this.username, this.password);
     let w;
     this.storage.get(this.username).then((val) =>{
@@ -31,7 +32,7 @@ export class LoginPage {
         console.log("password correct");
         this.storage.get(this.username+"Data").then((val) =>{
           console.log(val);
-          if (!(val == null)) {
+          if (!(val == null)){
             currentUser.data.getDataFromList(val.data);
           }
         });
@@ -51,6 +52,11 @@ export class LoginPage {
           }
           currentUser.setAllWeight(w,wDates);
         });
+        this.storage.get(this.username+"Exercises").then((val) =>{
+          if (!(val == null)){
+            currentUser.setAllExercises(val);
+          }
+        });
       }else if (val == undefined){
         //create new user
         console.log("new user");
@@ -64,8 +70,8 @@ export class LoginPage {
         currentUser: currentUser
       });
     })
-
-
+      
+    
   }
 
   storeUser(){

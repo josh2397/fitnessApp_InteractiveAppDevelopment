@@ -21,6 +21,10 @@ export class User {
     console.log(this.username, this.password);
   }
 
+  setAllExercises(exercises:string[]){
+    this.exercises = exercises;
+  }
+
   setAllWeight(w:any, wD:any){
     this.weight = w;
     this.weightEntryDate = wD;
