@@ -21,6 +21,14 @@ export class User {
     console.log(this.username, this.password);
   }
 
+  delExercise(ex:string){
+    this.exercises.splice(this.exercises.indexOf(ex),1);
+  }
+
+  rename(newS:string, oldS:string){
+    this.exercises[this.exercises.indexOf(newS)] = oldS;
+  }
+
   setAllExercises(exercises:string[]){
     this.exercises = exercises;
   }

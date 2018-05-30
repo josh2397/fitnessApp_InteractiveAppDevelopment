@@ -35,5 +35,23 @@
       </button>
     </ion-item>
 
+    <ion-list>
+      <ion-list-header>
+        Edit Exercises
+      </ion-list-header>
+      <ion-item-sliding *ngFor="let ex of currentUser.exercises">
+        <ion-item>
+            <h2>{{ex}}</h2>
+        </ion-item>
+        <ion-item-options>
+          <button ion-button color="danger" (click)="delete(ex)">
+            Delete
+          </button>
+          <button ion-button color="light" (click)="edit(ex)">
+            Edit
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
 
 </ion-content>

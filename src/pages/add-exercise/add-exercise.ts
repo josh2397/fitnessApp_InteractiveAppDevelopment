@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { User } from '../../common/User';
 
 
@@ -14,7 +14,7 @@ export class AddExercisePage {
   exercise:string;
   cat:string;
   goal:string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private view: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private view: ViewController,public alertCtrl: AlertController) {
     this.currentUser = navParams.get('currentUser');
   }
 
@@ -27,6 +27,30 @@ export class AddExercisePage {
       this.currentUser.getNewExercise(this.exercise);
     }
     this.view.dismiss();
+  }
+
+  edit(ex:string){
+    let newStr;
+    let prompt = this.alertCtrl.create({
+      inputs: [
+        {
+          name: 'FirstName',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Rename',
+          handler: data=>{
+            this.currentUser.rename(ex,data.FirstName);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+  
+  delete(ex:string){
+    this.currentUser.delExercise(ex);
   }
 
 }

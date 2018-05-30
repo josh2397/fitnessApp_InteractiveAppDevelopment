@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TabsPage} from "../tabs/tabs";
 import { LogweightPage } from "../logweight/logweight";
 import { Chart } from 'chart.js';
-import { Storage } from "@ionic/storage";
 
 @IonicPage()
 @Component({
@@ -15,13 +14,10 @@ export class WeightPage {
   @ViewChild('weightChart') canvas;
   chart:any;
   timeScale:number = 1;
-  imageFile:string;
+
   currentUser:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.currentUser = navParams.data;
-    storage.get('image').then(val => {
-      this.imageFile = val;
-    });
   }
 
   notify() {
@@ -68,14 +64,5 @@ export class WeightPage {
   logweight() {
     let currentUser = this.navParams.data;
     this.navCtrl.push(LogweightPage, { currentUser: currentUser })
-  }
-
-  displayImage(files){
-    let fileReader = new FileReader();
-    fileReader.onload = e => {
-      this.imageFile = fileReader.result;
-      this.storage.set('image', this.imageFile);
-    };
-    fileReader.readAsDataURL(files[0]);
   }
 }
