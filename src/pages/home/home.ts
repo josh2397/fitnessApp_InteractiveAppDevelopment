@@ -15,13 +15,11 @@ export class HomePage {
   exercises:string[];
   chart:any;
   exercise:any;
-  timeScale:any = 100;
+  timeScale:any = 0;
 
   constructor(public navCtrl: NavController, private modal: ModalController, public navParams: NavParams) {
-
     this.currentUser = navParams.data;
     this.exercises = this.currentUser.exercises;
-
   }
 
   openModal() {
@@ -31,13 +29,22 @@ export class HomePage {
   }
 
   notify() {
+    if(this.currentUser.data.getExercise(this.exercise) == undefined){
+      this.timeScale = 0;
+      this.chart = new Chart(this.canvas.nativeElement, {
+        labels: [1, 2, 3, 4],
+        series: [[]]
+      });
+      this.chart.update();
+      return;
+    }
     this.chart = new Chart(this.canvas.nativeElement, {
       type:'line',
       data: {
-        labels: this.currentUser.data.getDate(this.exercise).slice(0, Math.floor(this.currentUser.data.getDate(this.exercise).length * this.timeScale/100)),
+        labels: this.currentUser.data.getDate(this.exercise).slice(Math.floor(this.currentUser.data.getDate(this.exercise).length * this.timeScale/100), this.currentUser.data.getDate(this.exercise).length),
         datasets: [{
           label:"Total Weight",
-          data: this.currentUser.data.getExercise(this.exercise).slice(0, Math.floor(this.currentUser.data.getExercise(this.exercise).length * this.timeScale/100)),
+          data: this.currentUser.data.getExercise(this.exercise).slice(Math.floor(this.currentUser.data.getExercise(this.exercise).length * this.timeScale/100), this.currentUser.data.getExercise(this.exercise).length),
           backgroundColor:"red",
           fill:false,
         }]
@@ -51,46 +58,14 @@ export class HomePage {
     this.chart.update();
 
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WeightPage');
-
-    this.chart = new Chart(this.canvas.nativeElement, {
-      type:'line',
-      data: {
-        labels: this.currentUser.data.getDate(this.exercise).slice(0, Math.floor(this.currentUser.data.getDate(this.exercise).length * this.timeScale/100)),
-        datasets: [{
-          label:"Total Weight",
-          data: this.currentUser.data.getExercise(this.exercise).slice(0, Math.floor(this.currentUser.data.getExercise(this.exercise).length * this.timeScale/100)),
-          backgroundColor:"red",
-          fill:false,
-        }]
-
-      }
-    });
-    this.chart.update();
-  }
 
   ionViewDidEnter() {
-    console.log('ionViewDidLoad WeightPage');
-
-    this.chart = new Chart(this.canvas.nativeElement, {
-      type:'line',
-      data: {
-        labels: this.currentUser.data.getDate(this.exercise).slice(0, Math.floor(this.currentUser.data.getDate(this.exercise).length * this.timeScale/100)),
-        datasets: [{
-          label:"Total Weight",
-          data: this.currentUser.data.getExercise(this.exercise).slice(0, Math.floor(this.currentUser.data.getExercise(this.exercise).length * this.timeScale/100)),
-          backgroundColor:"red",
-          fill:false,
-        }]
-
-      }
-    });
-    this.chart.update();
+    this.timeScale = 0;
+    this.notify();
   }
 
-  logout(){
-    this.navCtrl.setRoot(LoginPage);
-  }
+  // logout(){
+  //   this.navCtrl.setRoot(LoginPage);
+  // }
 
 }

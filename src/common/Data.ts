@@ -8,6 +8,17 @@ export class Data {
     constructor() {
 
     }
+
+    getDataFromList(newData:any){
+      for (let key in newData){
+        this.data[key] = [];
+        for (var i = 0; i < newData[key].length; i++){
+          this.data[key][i] = newData[key][i];
+        }
+      }
+    }
+
+
     addWeight(weightEntry:number){
       this.weight.push(weightEntry)
     }
@@ -24,11 +35,14 @@ export class Data {
     }
 
     getExercise(exercise:string){
+      try{
         let retList = [];
         for (var i = 0; i < this.data[exercise].length; i++){
             retList.push(this.data[exercise][i][0]*this.data[exercise][i][1]*this.data[exercise][i][2]);
         }
         return retList;
+      }catch{ }
+      return undefined;
     }
 
     getDate(exercise:string){

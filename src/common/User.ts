@@ -2,6 +2,7 @@ import { Entry } from '../common/Entry';
 import { LoginPage } from "../pages/login/login";
 import { Data } from "../common/Data";
 import { Weight } from "../common/Weight";
+import { Storage } from '@ionic/storage';
 
 export class User {
   username:string;
@@ -18,6 +19,11 @@ export class User {
     this.weight = [];
     this.weightEntryDate = [];
     console.log(this.username, this.password);
+  }
+
+  setAllWeight(w:any, wD:any){
+    this.weight = w;
+    this.weightEntryDate = wD;
   }
 
   getNewExercise(exercise:string){

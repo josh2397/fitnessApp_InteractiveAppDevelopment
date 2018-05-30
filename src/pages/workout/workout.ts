@@ -97,21 +97,19 @@ export class WorkoutPage {
     var yyyy = today.getFullYear();
 
     var ftoday = mm + '/' + dd + '/' + yyyy;
-    console.log(ftoday);
     for (var i = 0; i < 10; i++){
       this.weight = Math.random() * (100-10) + 10;
       dd += 1;
       ftoday = mm + '/' + dd + '/' + yyyy;
-      console.log(ftoday);
       this.currentUser.getNewEntry(new Entry(this.exercise, this.sets, this.reps, this.weight, ftoday));
     }
     this.currentUser.getNewEntry(new Entry(this.exercise,this.sets,this.reps,this.weight, ftoday));
+    this.storage.set(this.currentUser.username+"Data",this.currentUser.data);
   }
 
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WorkoutPage');
   }
 
 }
